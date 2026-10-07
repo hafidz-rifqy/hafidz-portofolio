@@ -7,7 +7,6 @@ export function initContact() {
   loadComments();
   initContactForm();
   initCommentForm();
-  initSSE();
   document.getElementById('currentYear').textContent = new Date().getFullYear();
 }
 
@@ -93,7 +92,7 @@ function initContactForm() {
 
     try {
       await api.postContact({ name, email, message });
-      showToast('Pesan berhasil dikirim! 🎉', 'success');
+      showToast('Versi static: pesan ditampilkan sebagai demo. Hubungkan ke Formspree atau EmailJS agar form bisa terkirim nyata.', 'success');
       form.reset();
     } catch (err) {
       showToast('Gagal mengirim pesan. Coba lagi.', 'error');
@@ -144,34 +143,40 @@ function initCommentForm() {
     if (!name || !message) return;
 
     try {
-      // Optimistic logic removed, will rely purely on SSE if server handles it, 
-      // but for instant local feel, we just await server response which triggers SSE anyway.
-      // We will let SSE handle the actual prepend to prevent duplicate rendering if possible.
-      // Wait, let's keep it simple: we submit, and let SSE do the appending.
-      
-      let payload;
-      if (selectedFile) {
-        payload = new FormData();
-        payload.append('name', name);
-        payload.append('message', message);
-        payload.append('avatar_image', selectedFile);
-      } else {
-        payload = { name, message, avatar_color: selectedColor };
-      }
+      const newComment = {
+        id: Date.now(),
+        name,
+        message,
+        avatar_color: selectedColor,
+        avatar_image: '',
+        created_at: new Date().toISOString(),
+      };
 
-      await api.postComment(payload);
-      
+      const existing = document.getElementById('commentsList');
+      const current = existing ? Array.from(existing.querySelectorAll('.comment-item')).map((node) => ({
+        id: Number(node.dataset.id),
+        name: node.querySelector('.comment-author')?.textContent || '',
+        message: node.querySelector('.comment-text')?.textContent || '',
+        avatar_color: selectedColor,
+        avatar_image: '',
+        created_at: new Date().toISOString(),
+      })) : [];
+
+      const merged = [newComment, ...current];
+      renderComments(merged);
+
+      await api.postComment(newComment);
+
       form.reset();
       selectedFile = null;
       if (imageName) imageName.style.display = 'none';
       if (colorRow) colorRow.style.display = 'flex';
 
-      // Re-select first color
       colorBtns.forEach(b => b.classList.remove('active'));
-      if(colorBtns[0]) colorBtns[0].classList.add('active');
+      if (colorBtns[0]) colorBtns[0].classList.add('active');
       selectedColor = '#6366f1';
 
-      showToast('Komentar berhasil ditambahkan! ✨', 'success');
+      showToast('Komentar demo berhasil ditambahkan di browser ini. ✨', 'success');
     } catch (err) {
       showToast('Gagal mengirim komentar. Coba lagi.', 'error');
     }
@@ -205,60 +210,4 @@ function getTimeAgo(date) {
   return date.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
 }
 
-function initSSE() {
-  const evtSource = new EventSource('/api/events');
-  
-  evtSource.addEventListener('new-comment', event => {
-    const c = JSON.parse(event.data);
-    const list = document.getElementById('commentsList');
-    const countEl = document.getElementById('commentCount');
-    if (!list) return;
 
-    // Check if it already exists (optimistic update fallback)
-    if (list.querySelector(`[data-id="${c.id}"]`)) return;
-
-    if (list.querySelector('p')) list.innerHTML = '';
-
-    const initial = c.name.charAt(0).toUpperCase();
-    const avatarContent = c.avatar_image 
-      ? `<img src="${c.avatar_image}" alt="${escapeHtml(c.name)}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />`
-      : initial;
-
-    const html = `
-      <div class="comment-item" data-id="${c.id}">
-        <div class="comment-avatar" style="background: ${c.avatar_image ? 'transparent' : c.avatar_color}">${avatarContent}</div>
-        <div class="comment-body">
-          <div class="comment-author">${escapeHtml(c.name)}</div>
-          <div class="comment-text">${escapeHtml(c.message)}</div>
-          <div class="comment-time">Baru saja</div>
-        </div>
-      </div>
-    `;
-    list.insertAdjacentHTML('afterbegin', html);
-
-    const currentCount = parseInt(countEl?.textContent?.match(/\d+/)?.[0] || '0');
-    if (countEl) countEl.textContent = `(${currentCount + 1})`;
-  });
-
-  evtSource.addEventListener('delete-comment', event => {
-    const id = event.data;
-    const item = document.querySelector(`.comment-item[data-id="${id}"]`);
-    if (item) {
-      item.remove();
-      const countEl = document.getElementById('commentCount');
-      if (countEl) {
-        const currentCount = parseInt(countEl.textContent.match(/\d+/)?.[0] || '1');
-        countEl.textContent = `(${Math.max(0, currentCount - 1)})`;
-      }
-      
-      const list = document.getElementById('commentsList');
-      if (list && list.children.length === 0) {
-        list.innerHTML = '<p style="color: var(--text-muted); text-align: center; padding: 2rem;">Belum ada komentar. Jadilah yang pertama!</p>';
-      }
-    }
-  });
-
-  evtSource.onerror = () => {
-    console.warn('SSE connection lost on public site, reconnecting...');
-  };
-}

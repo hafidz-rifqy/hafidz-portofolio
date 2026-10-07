@@ -111,11 +111,11 @@ async function loadProfile() {
       downloadCV.style.display = 'inline-flex';
     } else if (downloadCV && !profile.cv_file) {
       downloadCV.style.opacity = '0.5';
-      downloadCV.title = 'CV belum diupload. Upload melalui Admin Panel.';
+      downloadCV.title = 'CV belum tersedia di versi static.';
       downloadCV.addEventListener('click', (e) => {
         if (!profile.cv_file) {
           e.preventDefault();
-          showToast('CV belum tersedia. Upload melalui Admin Panel.', 'error');
+          showToast('CV belum tersedia di versi static. Anda bisa menambahkan file CV secara manual nanti.', 'error');
         }
       });
     }

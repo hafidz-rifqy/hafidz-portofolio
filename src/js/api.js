@@ -1,39 +1,49 @@
-// API wrapper for all fetch calls
+// Static data wrapper for free-hosting compatibility.
 
-const API_BASE = '/api';
+const DATA_URL = '/data/site.json';
 
-async function request(url, options = {}) {
-  try {
-    const isFormData = options.body instanceof FormData;
-    const headers = { ...options.headers };
-    if (!isFormData) {
-      headers['Content-Type'] = 'application/json';
-    }
+let cachedData = null;
 
-    const response = await fetch(`${API_BASE}${url}`, {
-      ...options,
-      headers,
-    });
+async function getData() {
+  if (cachedData) return cachedData;
 
-    if (!response.ok) {
-      const error = await response.json().catch(() => ({ error: response.statusText }));
-      throw new Error(error.error || 'Request failed');
-    }
-
-    return await response.json();
-  } catch (err) {
-    console.error(`API Error [${url}]:`, err.message);
-    throw err;
+  const response = await fetch(DATA_URL);
+  if (!response.ok) {
+    throw new Error('Gagal memuat data portfolio');
   }
+
+  cachedData = await response.json();
+  return cachedData;
 }
 
 export const api = {
-  // Public
-  getProfile: () => request('/profile'),
-  getPortfolio: (category) => request(category ? `/portfolio?category=${category}` : '/portfolio'),
-  getExperience: () => request('/experience'),
-  getSocial: () => request('/social'),
-  getComments: () => request('/comments'),
-  postComment: (data) => request('/comments', { method: 'POST', body: data instanceof FormData ? data : JSON.stringify(data) }),
-  postContact: (data) => request('/contact', { method: 'POST', body: JSON.stringify(data) }),
+  getProfile: async () => {
+    const data = await getData();
+    return data.profile || {};
+  },
+  getPortfolio: async (category) => {
+    const data = await getData();
+    const items = data.portfolio || [];
+    return category ? items.filter((item) => item.category === category) : items;
+  },
+  getExperience: async () => {
+    const data = await getData();
+    return data.experience || [];
+  },
+  getSocial: async () => {
+    const data = await getData();
+    return data.social || [];
+  },
+  getComments: async () => {
+    const data = await getData();
+    return data.comments || [];
+  },
+  postComment: async () => ({
+    success: true,
+    message: 'Versi static: komentar hanya demo di browser ini.',
+  }),
+  postContact: async () => ({
+    success: true,
+    message: 'Versi static: kontak siap dihubungkan ke Formspree / EmailJS.',
+  }),
 };

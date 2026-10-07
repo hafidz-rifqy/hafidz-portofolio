@@ -1,0 +1,238 @@
+{
+  "profile": {
+    "id": 1,
+    "name": "Hafidz",
+    "title": "Full Stack Developer",
+    "subtitle": "Crafting Digital Experiences",
+    "bio": "Seorang developer yang passionate dalam membangun aplikasi web modern dan interaktif. Dengan pengalaman di berbagai teknologi, saya selalu berusaha menciptakan solusi digital yang elegan dan efisien.",
+    "photo": "",
+    "cv_file": "",
+    "email": "hafidz@example.com"
+  },
+  "portfolio": [
+    {
+      "id": 1,
+      "category": "project",
+      "title": "E-Commerce Platform",
+      "description": "Platform e-commerce modern dengan fitur real-time",
+      "detail": "Membangun platform e-commerce full-stack dengan fitur keranjang belanja, payment gateway, dan real-time inventory tracking. Menggunakan arsitektur microservices untuk skalabilitas.",
+      "image": "",
+      "tech_used": "React, Node.js, MongoDB, Stripe",
+      "duration": "3 bulan",
+      "site_url": "https://example.com",
+      "sort_order": 1
+    },
+    {
+      "id": 2,
+      "category": "project",
+      "title": "Task Management App",
+      "description": "Aplikasi manajemen tugas dengan kolaborasi tim",
+      "detail": "Aplikasi manajemen proyek dengan fitur drag-and-drop kanban board, real-time collaboration, dan notifikasi. Terintegrasi dengan Slack dan Google Calendar.",
+      "image": "",
+      "tech_used": "Vue.js, Express, PostgreSQL, Socket.io",
+      "duration": "2 bulan",
+      "site_url": "https://example.com",
+      "sort_order": 2
+    },
+    {
+      "id": 3,
+      "category": "project",
+      "title": "AI Chat Assistant",
+      "description": "Chatbot AI dengan NLP untuk customer service",
+      "detail": "Chatbot pintar menggunakan natural language processing untuk otomasi customer service. Mampu menangani 80% pertanyaan umum secara otomatis.",
+      "image": "",
+      "tech_used": "Python, TensorFlow, FastAPI, React",
+      "duration": "4 bulan",
+      "site_url": "https://example.com",
+      "sort_order": 3
+    },
+    {
+      "id": 4,
+      "category": "certificate",
+      "title": "Universitas Teknologi",
+      "description": "S1 Teknik Informatika",
+      "detail": "Menyelesaikan program sarjana dengan fokus pada pengembangan perangkat lunak dan kecerdasan buatan. Aktif dalam berbagai proyek riset dan kompetisi programming.",
+      "image": "",
+      "tech_used": "Java, Python, C++, SQL",
+      "duration": "4 tahun",
+      "site_url": "",
+      "sort_order": 1
+    },
+    {
+      "id": 5,
+      "category": "certificate",
+      "title": "Bootcamp Full Stack",
+      "description": "Intensive Full Stack Web Development",
+      "detail": "Program intensif 6 bulan yang mencakup frontend, backend, dan DevOps. Menyelesaikan 15+ proyek real-world.",
+      "image": "",
+      "tech_used": "JavaScript, React, Node.js, Docker",
+      "duration": "6 bulan",
+      "site_url": "",
+      "sort_order": 2
+    },
+    {
+      "id": 6,
+      "category": "techstack",
+      "title": "JavaScript / TypeScript",
+      "description": "Bahasa pemrograman utama",
+      "detail": "Pengalaman 3+ tahun menggunakan JavaScript dan TypeScript untuk pengembangan web full-stack.",
+      "image": "",
+      "tech_used": "",
+      "duration": "3+ tahun",
+      "site_url": "",
+      "sort_order": 1
+    },
+    {
+      "id": 7,
+      "category": "techstack",
+      "title": "React & Next.js",
+      "description": "Frontend Framework",
+      "detail": "Membangun UI interaktif dan performant menggunakan React ecosystem termasuk Redux, React Query, dan Next.js.",
+      "image": "",
+      "tech_used": "",
+      "duration": "2+ tahun",
+      "site_url": "",
+      "sort_order": 2
+    },
+    {
+      "id": 8,
+      "category": "techstack",
+      "title": "Node.js & Express",
+      "description": "Backend Runtime",
+      "detail": "Mengembangkan RESTful API dan microservices menggunakan Node.js dengan Express dan Fastify.",
+      "image": "",
+      "tech_used": "",
+      "duration": "3+ tahun",
+      "site_url": "",
+      "sort_order": 3
+    },
+    {
+      "id": 9,
+      "category": "techstack",
+      "title": "Python",
+      "description": "AI & Backend",
+      "detail": "Pengalaman dengan Django, FastAPI, dan library machine learning seperti TensorFlow dan PyTorch.",
+      "image": "",
+      "tech_used": "",
+      "duration": "2+ tahun",
+      "site_url": "",
+      "sort_order": 4
+    },
+    {
+      "id": 10,
+      "category": "techstack",
+      "title": "Database",
+      "description": "SQL & NoSQL",
+      "detail": "Pengalaman dengan PostgreSQL, MySQL, MongoDB, dan Redis untuk berbagai kebutuhan data storage.",
+      "image": "",
+      "tech_used": "",
+      "duration": "3+ tahun",
+      "site_url": "",
+      "sort_order": 5
+    },
+    {
+      "id": 11,
+      "category": "techstack",
+      "title": "DevOps & Cloud",
+      "description": "Infrastructure",
+      "detail": "Docker, CI/CD pipelines, AWS, dan Vercel untuk deployment dan infrastructure management.",
+      "image": "",
+      "tech_used": "",
+      "duration": "2+ tahun",
+      "site_url": "",
+      "sort_order": 6
+    }
+  ],
+  "experience": [
+    {
+      "id": 1,
+      "title": "SD Negeri 1",
+      "institution": "Sekolah Dasar",
+      "period": "2008 - 2014",
+      "description": "Menempuh pendidikan dasar dan mulai mengenal teknologi komputer.",
+      "type": "education",
+      "sort_order": 1
+    },
+    {
+      "id": 2,
+      "title": "SMP Negeri 1",
+      "institution": "Sekolah Menengah Pertama",
+      "period": "2014 - 2017",
+      "description": "Mulai mengenal programming dasar dan membuat website sederhana.",
+      "type": "education",
+      "sort_order": 2
+    },
+    {
+      "id": 3,
+      "title": "SMA Negeri 1",
+      "institution": "Sekolah Menengah Atas",
+      "period": "2017 - 2020",
+      "description": "Fokus pada jurusan IPA dan aktif dalam ekskul komputer serta robotika.",
+      "type": "education",
+      "sort_order": 3
+    },
+    {
+      "id": 4,
+      "title": "Universitas Teknologi",
+      "institution": "S1 Teknik Informatika",
+      "period": "2020 - 2024",
+      "description": "Mendalami ilmu komputer, algoritma, dan pengembangan perangkat lunak. Aktif dalam berbagai proyek riset.",
+      "type": "education",
+      "sort_order": 4
+    },
+    {
+      "id": 5,
+      "title": "Junior Developer",
+      "institution": "Tech Startup",
+      "period": "2023 - 2024",
+      "description": "Magang sebagai junior developer, membangun fitur-fitur baru untuk platform utama perusahaan.",
+      "type": "work",
+      "sort_order": 5
+    },
+    {
+      "id": 6,
+      "title": "Full Stack Developer",
+      "institution": "Freelance",
+      "period": "2024 - Sekarang",
+      "description": "Mengerjakan berbagai proyek freelance untuk klien lokal dan internasional.",
+      "type": "work",
+      "sort_order": 6
+    }
+  ],
+  "social": [
+    { "id": 1, "platform": "github", "url": "https://github.com/hafidz", "icon": "github", "sort_order": 1 },
+    { "id": 2, "platform": "instagram", "url": "https://instagram.com/hafidz", "icon": "instagram", "sort_order": 2 },
+    { "id": 3, "platform": "tiktok", "url": "https://tiktok.com/@hafidz", "icon": "tiktok", "sort_order": 3 },
+    { "id": 4, "platform": "linkedin", "url": "https://linkedin.com/in/hafidz", "icon": "linkedin", "sort_order": 4 },
+    { "id": 5, "platform": "twitter", "url": "https://twitter.com/hafidz", "icon": "twitter", "sort_order": 5 }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "name": "Budi Santoso",
+      "message": "Portfolio yang sangat impressive! Liquid glass effectnya keren banget 🔥",
+      "avatar_color": "#6366f1",
+      "avatar_image": "",
+      "created_at": "2026-10-01T10:00:00.000Z",
+      "is_approved": 1
+    },
+    {
+      "id": 2,
+      "name": "Sari Dewi",
+      "message": "Desainnya profesional sekali, semoga sukses terus ya!",
+      "avatar_color": "#ec4899",
+      "avatar_image": "",
+      "created_at": "2026-10-02T12:00:00.000Z",
+      "is_approved": 1
+    },
+    {
+      "id": 3,
+      "name": "Ahmad Rizky",
+      "message": "Wow, interaktif banget websitenya. Inspiring! 💯",
+      "avatar_color": "#10b981",
+      "avatar_image": "",
+      "created_at": "2026-10-03T14:00:00.000Z",
+      "is_approved": 1
+    }
+  ]
+}

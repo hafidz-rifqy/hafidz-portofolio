@@ -4,12 +4,11 @@
   "description": "Interactive Portfolio Website with Admin Panel",
   "type": "module",
   "scripts": {
-    "start": "node server/index.js",
-    "dev": "concurrently \"vite\" \"node server/index.js\"",
-    "dev:frontend": "vite",
-    "dev:backend": "node server/index.js",
+    "dev": "vite --host 0.0.0.0",
+    "dev:frontend": "vite --host 0.0.0.0",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview --host 0.0.0.0",
+    "start": "vite preview --host 0.0.0.0"
   },
   "engines": {
     "node": "20.x"

@@ -71,7 +71,7 @@ function renderCards() {
   const filtered = allPortfolio.filter(item => item.category === currentCategory);
 
   if (filtered.length === 0) {
-    grid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; color: var(--text-muted); padding: 3rem;">Belum ada data. Tambahkan melalui Admin Panel.</div>`;
+    grid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; color: var(--text-muted); padding: 3rem;">Belum ada data untuk kategori ini.</div>`;
     return;
   }
 
